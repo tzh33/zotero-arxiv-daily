@@ -94,8 +94,9 @@ class Executor:
         corpus = self.fetch_zotero_corpus()
         corpus = self.filter_corpus(corpus)
         if len(corpus) == 0:
-            logger.error(f"No zotero papers found. Please check your zotero settings:\n{self.config.zotero}")
-            return
+            logger.warning("No zotero papers found. Will continue running WITHOUT similarity filter and deduplication!")
+            # logger.error(f"No zotero papers found. Please check your zotero settings:\n{self.config.zotero}")
+            # return
         all_papers = []
         for source, retriever in self.retrievers.items():
             logger.info(f"Retrieving {source} papers...")
